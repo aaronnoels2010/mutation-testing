@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+    id "io.freefair.lombok" version "6.5.1"
+    id 'info.solidsoft.pitest' version '1.7.4'
+}
+
+// https://gradle-pitest-plugin.solidsoft.info/
+pitest {
+    targetClasses = ['com.example.*']  //by default "${project.group}.*"
+    threads = 4
+    outputFormats = ['XML', 'HTML']
+    timestampedReports = false
+    useClasspathFile = true
+    junit5PluginVersion = '0.15'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
+    implementation 'io.quarkus:quarkus-jdbc-postgresql'
+    implementation 'io.quarkus:quarkus-websockets'
+    implementation 'io.quarkus:quarkus-arc'
+    implementation 'io.quarkus:quarkus-resteasy-reactive'
+    implementation("io.quarkus:quarkus-hibernate-orm")
+    implementation("io.quarkus:quarkus-hibernate-orm-panache")
+    implementation 'org.mapstruct:mapstruct:1.5.2.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+build.dependsOn 'pitest'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
