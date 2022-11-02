@@ -1,6 +1,5 @@
 package com.example.model;
 
-import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +8,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@QuarkusTest
 public class PersonTest {
 
     @Test
@@ -22,7 +20,7 @@ public class PersonTest {
 
     @Test
     public void shouldGetAllTheSkills() {
-        List<Skill> expectedSkills = new ArrayList<Skill> ();
+        List<Skill> expectedSkills = new ArrayList<Skill>();
         expectedSkills.add(Skill.builder().name("C#").build());
         expectedSkills.add(Skill.builder().name("java").build());
         expectedSkills.add(Skill.builder().name("python").build());
@@ -34,7 +32,7 @@ public class PersonTest {
 
     @Test
     public void shouldAddSkillIfItIsUnique() {
-        List<Skill> expectedSkills = new ArrayList<Skill> ();
+        List<Skill> expectedSkills = new ArrayList<Skill>();
         expectedSkills.add(Skill.builder().name("C#").build());
         expectedSkills.add(Skill.builder().name("java").build());
         expectedSkills.add(Skill.builder().name("python").build());
@@ -47,7 +45,7 @@ public class PersonTest {
 
     @Test
     public void shouldNotAddSkillIfItIsNotUnique() {
-        List<Skill> expectedSkills = new ArrayList<Skill> ();
+        List<Skill> expectedSkills = new ArrayList<Skill>();
         expectedSkills.add(Skill.builder().name("C#").build());
         expectedSkills.add(Skill.builder().name("java").build());
         expectedSkills.add(Skill.builder().name("python").build());
