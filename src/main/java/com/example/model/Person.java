@@ -1,6 +1,5 @@
 package com.example.model;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import lombok.*;
 
@@ -40,6 +39,11 @@ public class Person extends PanacheEntityBase {
     @Setter
     @ManyToMany
     private List<Skill> skills;
+
+    public Person(String name, Integer yearsOfExperience) {
+        this.name = name;
+        setYearsOfExperience(yearsOfExperience);
+    }
 
     public void setYearsOfExperience(Integer yearsOfExperience) {
         if (yearsOfExperience < 0) {
