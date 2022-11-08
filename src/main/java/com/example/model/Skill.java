@@ -23,6 +23,8 @@ public class Skill extends PanacheEntityBase {
   @Column(unique = true)
   public String name;
 
+  public Category category;
+
   @ManyToMany(mappedBy = "skills")
   private List<Person> persons;
 

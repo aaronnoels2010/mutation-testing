@@ -17,6 +17,9 @@ public interface AutoMapper {
     PersonDto personToDto(Person person);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "seniority", ignore = true)
+    @Mapping(target = "canBeEM", ignore = true)
+    @Mapping(target = "canBeLTC", ignore = true)
     @Mapping(target = "skills", ignore = true)
     Person createToPerson(CreatePersonDto newPersonDto);
 
